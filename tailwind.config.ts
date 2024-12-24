@@ -8,6 +8,14 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      padding: {
+        DEFAULT: "0.5rem",
+        lg: "0.5rem",
+        xl: "4rem",
+        "2xl": "7rem",
+      },
+    },
     extend: {
       colors: {
         background: "hsl(var(--background))",
@@ -32,11 +40,19 @@ const config: Config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "var(--primary)",
+          hover: "var(--primary-hover)",
+          pressed: "var(--primary-pressed)",
+          background: "var(--primary-background)",
+          border: "var(--primary-border)",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
+          DEFAULT: "var(--secondary)",
+          hover: "var(--secondary-hover)",
+          pressed: "var(--secondary-pressed)",
+          background: "var(--secondary-background)",
+          border: "var(--secondary-border)",
           foreground: "hsl(var(--secondary-foreground))",
         },
         muted: {
@@ -49,6 +65,10 @@ const config: Config = {
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
+          hover: "var(--destructive-hover)",
+          pressed: "var(--destructive-pressed)",
+          background: "var(--destructive-background)",
+          border: "var(--destructive-border)",
           foreground: "hsl(var(--destructive-foreground))",
         },
         input: "hsl(var(--input))",
