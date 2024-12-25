@@ -38,9 +38,9 @@ const LoginForm = (props: Props) => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Mật khẩu</FormLabel>
               <FormControl>
-                <Input placeholder="Password" {...field} />
+                <Input placeholder="Mật khẩu" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

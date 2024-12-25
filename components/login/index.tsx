@@ -1,23 +1,20 @@
 import React from "react"
 import Image from "next/image"
-import FPTlogo from "@/public/images/FPTlogo.png"
+import JTlogo from "@/public/images/J&T Express Logo.png"
 import { Button } from "../ui/button"
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
 import LoginForm from "./log-in-form/form"
 
-const WebConsentPage = () => {
+const LoginPage = () => {
   return (
     <div className="min-w-screen min-h-screen bg-slate-50 flex flex-col gap-10 justify-start items-center">
-      <Image src={FPTlogo} alt="FPT IS logo" className="w-72"></Image>
-      <h5 className="text-heading-4 text-green-600 font-bold -mt-8">
-        Web Consent Sign In
-      </h5>
+      <Image src={JTlogo} alt="FPT IS logo" className="w-72 mt-16"></Image>
       {/* <div className="bg-white rounded-lg shadow px-10 pt-10 pb-14 flex flex-col gap-6 w-full max-w-[30rem]"> */}
       <Card className="w-full max-w-[30rem]">
         <CardHeader className="p-10">
           <CardTitle className="text-center text-heading-6 font-bold text-typography-title mb-5">
-            Sign in to your account
+            Đăng nhập tài khoản
           </CardTitle>
         </CardHeader>
         <CardContent className="p-10 pt-0">
@@ -88,4 +85,4 @@ const OrContinueWith = () => {
   )
 }
 
-export default WebConsentPage
+export default LoginPage

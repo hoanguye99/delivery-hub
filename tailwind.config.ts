@@ -64,7 +64,7 @@ const config: Config = {
           foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
+          DEFAULT: "var(--destructive)",
           hover: "var(--destructive-hover)",
           pressed: "var(--destructive-pressed)",
           background: "var(--destructive-background)",
