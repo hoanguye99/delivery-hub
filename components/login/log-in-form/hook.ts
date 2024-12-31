@@ -12,13 +12,19 @@ const loginFormSchema = z.object({
 })
 
 // 👀 API Response
-const UserDetailSchema = z.object({
+export const UserDetailSchema = z.object({
   id: z.string(),
   fullname: z.string(),
   email: z.string(),
-  tenant: z.string(),
-  accessToken: z.string(),
-  refreshToken: z.string(),
+  role: z.string(),
+  access_token: z.object({
+    token: z.string(),
+    expireAt: z.number(),
+  }),
+  refresh_token: z.object({
+    token: z.string(),
+    expireAt: z.number(),
+  }),
 })
 
 export type UserDetail = z.infer<typeof UserDetailSchema>
