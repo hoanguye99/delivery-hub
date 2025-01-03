@@ -5,6 +5,7 @@ import { z } from "zod"
 import { AxiosError } from "axios"
 import axiosClient from "@/apis/axios-client"
 import { toast } from "sonner"
+import { useLoginSuccess } from "@/hooks/useLoginSuccess"
 
 const loginFormSchema = z.object({
   email: z.string().email(),
@@ -44,6 +45,8 @@ export const useLoginForm = () => {
     },
   })
 
+  const onLoginSuccess = useLoginSuccess()
+
   const mutation = useMutation<
     UserDetail,
     AxiosError,
@@ -51,8 +54,7 @@ export const useLoginForm = () => {
   >({
     mutationFn: (formData) => loginAPI(formData),
     onSuccess: (data, variables, context) => {
-      console.log("success")
-      console.log(data)
+      onLoginSuccess(data)
     },
     // onError: (error) => {
     //   console.error(error)

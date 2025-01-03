@@ -29,6 +29,10 @@ export function useInitialPageAccessToken() {
   return useQuery({
     queryKey: authKeys.getAccessToken(),
     queryFn: async () => {
+      if (!localStorage.getItem("next-delivery-userInfo")) {
+        logoutNavigate()
+        return undefined
+      }
       // if it's not time for refreshing => get data on localstorage
       if (
         Number(localStorage.getItem("next-delivery-nextTimeRefresh")) -
@@ -58,7 +62,9 @@ export function useInitialPageAccessToken() {
       } catch (error) {
         // Whenever refreshToken API returns an error, log out immediately
         toast.error("Failed when calling Refresh Token API")
+        console.error("Failed when calling Refresh Token API")
         logoutNavigate()
+        return undefined
       }
     },
 
@@ -74,9 +80,9 @@ export function useInitialPageAccessToken() {
     // },
     // onSuccess: (data) => console.log(data),
     // enable to make sure that local storage have data when refetch
-    enabled:
-      typeof window !== "undefined" &&
-      localStorage.getItem("next-delivery-userInfo") !== null,
+    // enabled:
+    //   typeof window !== "undefined" &&
+    //   localStorage.getItem("next-delivery-userInfo") !== null,
     // refetch every 50 minutes
     // refetchInterval: 10 * 60 * 1000,
     refetchInterval: (query) => {
@@ -107,9 +113,13 @@ export function useGetAccessToken() {
 }
 
 export function getUserDetail() {
-  return localStorage.getItem("next-delivery-userInfo")
-    ? (JSON.parse(
-        localStorage.getItem("next-delivery-userInfo")!
-      ) as UserDetail)
-    : ({} as UserDetail)
+  if (localStorage.getItem("next-delivery-userInfo")) {
+    return JSON.parse(
+      localStorage.getItem("next-delivery-userInfo")!
+    ) as UserDetail
+  } else {
+    throw new Error(
+      "User Detail from Local Storage not found! Are you sure to have fetched UserDetail from an authenticated page?"
+    )
+  }
 }

@@ -1,28 +1,33 @@
 import { useInitialPageAccessToken } from "@/hooks/query/auth"
-import { useLogoutNavigate } from "@/hooks/useLogout"
+import logo from "@/public/images/J&T Express Logo.png"
+import { Slot } from "@radix-ui/react-slot"
+import Image from "next/image"
 import React from "react"
 
 export const AccessTokenContext = React.createContext<string | null>(null)
 
 interface AuthProviderProps {
-  isPublic: boolean
+  asChild: boolean
   children: React.ReactNode
 }
 
 const AuthProvider = (props: AuthProviderProps) => {
-  if (props.isPublic) return <>{props.children}</>
-  return <AuthProviderInternal>{props.children}</AuthProviderInternal>
+  const Comp = props.asChild ? Slot : AuthProviderInternal
+  return <Comp {...props} />
 }
 
 const AuthProviderInternal = (props: { children: React.ReactNode }) => {
   const getPageAccessToken = useInitialPageAccessToken()
-  const logoutNavigate = useLogoutNavigate()
-
   if (getPageAccessToken.data === undefined) {
+    // Page screen loader
     return (
-      <div className="opacity-5">
-        Access Token appears to be undefined. It could be that it can't get
-        access token from local storage when the app first load. What else?
+      <div className="w-screen h-screen flex justify-center items-center">
+        <Image
+          src={logo}
+          alt="Website logo"
+          width={300}
+          className="animate-bounce-slow"
+        ></Image>
       </div>
     )
   }
