@@ -29,16 +29,6 @@ const items = [
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
     title: "Search",
     url: "#",
     icon: Search,
@@ -51,15 +41,15 @@ const items = [
 ]
 
 export function AppSidebar() {
-  const {
-    state,
-    open,
-    setOpen,
-    openMobile,
-    setOpenMobile,
-    isMobile,
-    toggleSidebar,
-  } = useSidebar()
+  // const {
+  //   state,
+  //   open,
+  //   setOpen,
+  //   openMobile,
+  //   setOpenMobile,
+  //   isMobile,
+  //   toggleSidebar,
+  // } = useSidebar()
   const router = useRouter()
   return (
     <Sidebar collapsible="icon">
@@ -113,7 +103,9 @@ export function AppSidebar() {
               d="M8.22439 1.95459C8.53122 1.95459 8.77995 2.20332 8.77995 2.51015V6.39903C8.77995 6.70586 8.53122 6.95459 8.22439 6.95459C7.91757 6.95459 7.66884 6.70586 7.66884 6.39903V2.51015C7.66884 2.20332 7.91757 1.95459 8.22439 1.95459Z"
             />
           </svg>
-          {state === "expanded" && <span>Đăng xuất</span>}
+          <span className="group-data-[collapsible=icon]:hidden">
+            Đăng xuất
+          </span>
         </Button>
       </SidebarFooter>
     </Sidebar>
