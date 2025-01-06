@@ -7,7 +7,7 @@ import React from "react"
 export const AccessTokenContext = React.createContext<string | null>(null)
 
 interface AuthProviderProps {
-  asChild: boolean
+  asChild?: boolean
   children: React.ReactNode
 }
 

@@ -1,8 +1,10 @@
 import React from "react"
 import { Slot } from "@radix-ui/react-slot"
+import { SidebarProvider } from "../ui/sidebar"
+import { AppSidebar } from "../app-sidebar"
 
 interface MainLayoutProps {
-  asChild: boolean
+  asChild?: boolean
   children: React.ReactNode
 }
 
@@ -13,10 +15,10 @@ const MainLayout = (props: MainLayoutProps) => {
 
 const MainLayoutInternal = (props: { children: React.ReactNode }) => {
   return (
-    <div>
-      <p className="text-red-500">Authenticated Layout</p>
+    <SidebarProvider>
+      <AppSidebar />
       {props.children}
-    </div>
+    </SidebarProvider>
   )
 }
 

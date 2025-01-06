@@ -16,6 +16,7 @@ import { ReactElement, ReactNode, useEffect } from "react"
 import NonSSRWrapper from "@/components/common/no-ssr-wrapper"
 import AuthProvider from "@/components/auth/auth-provider"
 import Layout from "@/components/layout/main"
+import { SidebarTrigger } from "@/components/ui/sidebar"
 
 const inter = localFont({
   src: "../public/font/Inter-VariableFont_slnt,wght.ttf",
@@ -62,15 +63,22 @@ export default function App({ Component, pageProps }: AppPropsWithAuthLayout) {
     <QueryClientProvider client={queryClient}>
       <Toaster />
       <NonSSRWrapper>
-        <AuthProvider asChild={Auth === PublicAuth}>
-          <Auth>
-            <Layout asChild={Auth === PublicAuth}>
-              <main className={inter.className}>
-                <Component {...pageProps} />
-              </main>
-            </Layout>
-          </Auth>
-        </AuthProvider>
+        {Auth === PublicAuth ? (
+          <main className={inter.className}>
+            <Component {...pageProps} />
+          </main>
+        ) : (
+          <AuthProvider>
+            <Auth>
+              <Layout>
+                <main className={inter.className}>
+                  <SidebarTrigger />
+                  <Component {...pageProps} />
+                </main>
+              </Layout>
+            </Auth>
+          </AuthProvider>
+        )}
       </NonSSRWrapper>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
