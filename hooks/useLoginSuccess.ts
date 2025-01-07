@@ -30,7 +30,7 @@ export const useLoginSuccess = () => {
       )
     }
     queryClient.setQueryData(authKeys.getAccessToken(), data)
-    router.push("/tenant")
+    router.push("/dashboard")
   }, [])
 
   return onLoginSuccess

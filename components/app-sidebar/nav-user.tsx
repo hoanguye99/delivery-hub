@@ -22,14 +22,13 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { Avatar } from "../ui/avatar"
-
-const user = {
-  name: "shadcn",
-  email: "m@example.com",
-}
+import { getUserDetail } from "@/hooks/query/auth"
+import { useLogoutNavigate } from "@/hooks/useLogout"
 
 export function NavUser() {
   const { isMobile } = useSidebar()
+  const userDetail = getUserDetail()
+  const logoutNavigate = useLogoutNavigate()
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -39,10 +38,12 @@ export function NavUser() {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar name="C N"></Avatar>
+              <Avatar name={userDetail.fullname}></Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate font-semibold">
+                  {userDetail.fullname}
+                </span>
+                <span className="truncate text-xs">{userDetail.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -55,10 +56,12 @@ export function NavUser() {
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar name="fds"></Avatar>
+                <Avatar name={userDetail.fullname}></Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate font-semibold">
+                    {userDetail.fullname}
+                  </span>
+                  <span className="truncate text-xs">{userDetail.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
@@ -78,7 +81,7 @@ export function NavUser() {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => logoutNavigate()}>
               <LogOut />
               Log out
             </DropdownMenuItem>
