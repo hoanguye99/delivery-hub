@@ -60,27 +60,34 @@ const queryClient = new QueryClient({
 export default function App({ Component, pageProps }: AppPropsWithAuthLayout) {
   const Auth = Component.Auth ?? PublicAuth
   return (
-    <QueryClientProvider client={queryClient}>
-      <Toaster />
-      <NonSSRWrapper>
-        {Auth === PublicAuth ? (
-          <main className={inter.className}>
-            <Component {...pageProps} />
-          </main>
-        ) : (
-          <AuthProvider>
-            <Auth>
-              <Layout>
-                <main className={inter.className}>
-                  <SidebarTrigger />
-                  <Component {...pageProps} />
-                </main>
-              </Layout>
-            </Auth>
-          </AuthProvider>
-        )}
-      </NonSSRWrapper>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <>
+      <style jsx global>{`
+        html {
+          font-family: ${inter.style.fontFamily};
+        }
+      `}</style>
+      <QueryClientProvider client={queryClient}>
+        <Toaster />
+        <NonSSRWrapper>
+          {Auth === PublicAuth ? (
+            <main>
+              <Component {...pageProps} />
+            </main>
+          ) : (
+            <AuthProvider>
+              <Auth>
+                <Layout>
+                  <main>
+                    <SidebarTrigger />
+                    <Component {...pageProps} />
+                  </main>
+                </Layout>
+              </Auth>
+            </AuthProvider>
+          )}
+        </NonSSRWrapper>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </>
   )
 }
