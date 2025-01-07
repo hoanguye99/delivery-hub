@@ -3,7 +3,11 @@ import { NextPageWithAuthLayout } from "../_app"
 import { TenantPageAuth } from "@/components/auth/page-auth"
 
 const TenantPage: NextPageWithAuthLayout = () => {
-  return <div>TenantPage</div>
+  return (
+    <div>
+      <p className="text-typography-placeholder">Bye bye</p>
+    </div>
+  )
 }
 TenantPage.Auth = TenantPageAuth
 
