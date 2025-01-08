@@ -24,7 +24,7 @@ import {
 import { useRouter } from "next/router"
 import Link from "next/link"
 
-const items = [
+export const NavItems = [
   {
     title: "Dashboard",
     url: "/dashboard",
@@ -73,7 +73,7 @@ export function NavMain() {
     <SidebarGroup>
       {/* <SidebarGroupLabel>Platform</SidebarGroupLabel> */}
       <SidebarMenu>
-        {items.map((item) =>
+        {NavItems.map((item) =>
           item.items ? (
             <Collapsible
               key={item.title}

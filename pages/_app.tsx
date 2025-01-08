@@ -16,7 +16,7 @@ import { ReactElement, ReactNode, useEffect } from "react"
 import NonSSRWrapper from "@/components/common/no-ssr-wrapper"
 import AuthProvider from "@/components/auth/auth-provider"
 import Layout from "@/components/layout/main"
-import { SidebarTrigger } from "@/components/ui/sidebar"
+import Header from "@/components/layout/header"
 
 const inter = localFont({
   src: "../public/font/Inter-VariableFont_slnt,wght.ttf",
@@ -77,8 +77,8 @@ export default function App({ Component, pageProps }: AppPropsWithAuthLayout) {
             <AuthProvider>
               <Auth>
                 <Layout>
-                  <main>
-                    <SidebarTrigger />
+                  <main className="px-4">
+                    <Header />
                     <Component {...pageProps} />
                   </main>
                 </Layout>
