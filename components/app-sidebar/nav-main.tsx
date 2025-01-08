@@ -111,6 +111,7 @@ export function NavMain() {
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
                 asChild
+                tooltip={item.title}
                 isActive={router.pathname === item.url}
               >
                 <Link href={item.url}>
