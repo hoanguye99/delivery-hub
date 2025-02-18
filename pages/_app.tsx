@@ -77,7 +77,7 @@ export default function App({ Component, pageProps }: AppPropsWithAuthLayout) {
             <AuthProvider>
               <Auth>
                 <Layout>
-                  <main className="px-4">
+                  <main className="px-4 w-full">
                     <Header />
                     <Component {...pageProps} />
                   </main>
