@@ -27,6 +27,12 @@ const buttonVariants = cva(
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10 rounded-full aspect-square",
       },
+      bounce: {
+        true: "duration-300 ease-in-out enabled:hover:-translate-y-1 enabled:hover:shadow-lg shadow-primary-base",
+      },
+      posting: {
+        true: "duration-0 first:*:text-transparent",
+      },
     },
     compoundVariants: [
       {

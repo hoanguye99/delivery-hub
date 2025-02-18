@@ -24,7 +24,7 @@ export const tenantQueries = {
 }
 
 // 👀 API Response
-const allTeanantSchema = z.object({
+export const allTenantSchema = z.object({
   id: z.string(),
   name: z.string(),
   description: z.string(),
@@ -35,8 +35,11 @@ const allTeanantSchema = z.object({
   created_time: z.string(),
 })
 
+export type TenantDetailSchema = z.infer<typeof allTenantSchema>
+
 const listAllTenantAPI = async (accessToken: string) => {
-  const url = "/tenant"
+  const url = "/tenant/"
+  
   const config = {
     headers: {
       token: accessToken,
@@ -44,5 +47,5 @@ const listAllTenantAPI = async (accessToken: string) => {
     },
   }
   const response = await axiosClient.get(url, config)
-  return PaginationResponseSchema(allTeanantSchema).parse(response)
+  return PaginationResponseSchema(allTenantSchema).parse(response)
 }

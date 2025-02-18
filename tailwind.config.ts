@@ -282,6 +282,16 @@ const config: Config = {
           },
         ],
       },
+      width: {
+        stt: '70px',
+        name: '240px',
+        description: '230px',
+        phone: '150px',
+        create_time: '150px',
+      },
+      height: {
+        'table-regular': 'calc(100vh - 14rem)',
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
